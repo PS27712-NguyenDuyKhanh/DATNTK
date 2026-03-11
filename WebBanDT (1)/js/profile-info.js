@@ -1,49 +1,99 @@
-const API = "http://localhost:8080/api/user";
+const USER_API = "http://localhost:8081/api/user";
 
-const userId = localStorage.getItem("userId");
-const token = localStorage.getItem("token");
+async function loadProfile() {
 
-async function loadProfile(){
+    const token = localStorage.getItem("token");
 
-    const res = await fetch(API + "/profile/" + userId,{
-        headers:{
-            "Authorization":"Bearer " + token
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    try {
+
+        const res = await fetch(USER_API + "/profile", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (res.ok) {
+
+            const data = await res.json();
+
+            document.getElementById("username").value = data.username;
+            document.getElementById("email").value = data.email;
+            document.getElementById("phone").value = data.phone || "";
+            document.getElementById("address").value = data.address || "";
+
+        } else {
+
+            showMessage("Không lấy được thông tin user", "danger");
+
         }
-    });
 
-    const data = await res.json();
+    } catch (error) {
 
-    document.getElementById("username").value = data.username || "";
-    document.getElementById("phone").value = data.phone || "";
-    document.getElementById("address").value = data.address || "";
+        showMessage("Server error", "danger");
+
+    }
+
 }
 
-loadProfile();
+async function updateProfile() {
 
-
-async function updateUser(){
+    const token = localStorage.getItem("token");
 
     const username = document.getElementById("username").value;
     const phone = document.getElementById("phone").value;
     const address = document.getElementById("address").value;
 
-    const res = await fetch(API + "/update/" + userId,{
-        method:"PUT",
-        headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer " + token
-        },
-        body:JSON.stringify({
-            username,
-            phone,
-            address
-        })
-    });
+    try {
 
-    if(res.ok){
-        alert("Cập nhật thành công");
-    }else{
-        alert("Cập nhật thất bại");
+        const res = await fetch("http://localhost:8081/api/user/profile", {
+
+            method: "PUT",
+
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+
+            body: JSON.stringify({
+                username,
+                phone,
+                address
+            })
+
+        });
+
+        if (res.ok) {
+
+            showMessage("Cập nhật thành công", "success");
+
+        } else {
+
+            showMessage("Cập nhật thất bại", "danger");
+
+        }
+
+    } catch (e) {
+
+        showMessage("Server error", "danger");
+
     }
 
+}
+function showMessage(text, type) {
+
+    const box = document.getElementById("message");
+
+    if (!box) return;
+
+    box.innerHTML = `
+        <div class="alert alert-${type}">
+            ${text}
+        </div>
+    `;
 }

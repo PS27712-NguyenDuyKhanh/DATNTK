@@ -1,4 +1,4 @@
-const API = "http://localhost:8080/api/auth";
+const API = "http://localhost:8081/api/auth";
 
 async function login() {
 
@@ -19,14 +19,13 @@ async function login() {
 
             const data = await res.json();
 
-            // lưu thông tin user
+            // lưu token
             localStorage.setItem("token", data.token);
             localStorage.setItem("role", data.role);
             localStorage.setItem("name", data.username);
 
             showMessage("Đăng nhập thành công", "success");
 
-            // chuyển trang sau 1s
             setTimeout(() => {
 
                 if (data.role === "ADMIN") {
