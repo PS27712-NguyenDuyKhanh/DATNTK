@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     private String password;
@@ -27,7 +27,13 @@ public class User {
 
     private String address;
 
+    // USER / ADMIN
     private String role;
 
+    // xác thực email
     private Boolean verified;
+
+    // khóa / mở tài khoản
+    private Boolean active;
+
 }

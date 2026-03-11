@@ -1,4 +1,4 @@
-const API = "http://localhost:8080/api/auth";
+const API = "http://localhost:8081/api/auth";
 
 function showMessage(text, type) {
 
@@ -113,7 +113,7 @@ async function login(){
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const res = await fetch("http://localhost:8080/api/auth/login",{
+    const res = await fetch("http://localhost:8081/api/auth/login",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"

@@ -138,10 +138,16 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Sai mật khẩu");
         }
 
-        String token = jwtService.generateToken(request.getEmail());
+        String token = jwtService.generateToken(
+                user.get().getEmail(),
+                user.get().getRole()
+        );
 
         return ResponseEntity.ok(Map.of(
-                "token", token
+                "token", token,
+                "role", user.get().getRole(),
+                "email", user.get().getEmail(),
+                "username", user.get().getUsername()
         ));
     }
 }
