@@ -3,6 +3,8 @@ package com.phonestore.controller;
 import com.phonestore.dto.UpdateUserRequest;
 import com.phonestore.entity.User;
 import com.phonestore.repository.UserRepository;
+import com.phonestore.security.JwtService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,23 +13,37 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final JwtService jwtService;
 
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository,
+                          JwtService jwtService) {
         this.userRepository = userRepository;
+        this.jwtService = jwtService;
     }
 
     // lấy profile
-    @GetMapping("/profile/{id}")
-    public User getProfile(@PathVariable Long id) {
-        return userRepository.findById(id).orElse(null);
+    @GetMapping("/profile")
+    public User getProfile(HttpServletRequest request){
+
+        String authHeader = request.getHeader("Authorization");
+        String token = authHeader.substring(7);
+
+        String email = jwtService.extractEmail(token);
+
+        return userRepository.findByEmail(email).orElseThrow();
     }
 
     // update thông tin
-    @PutMapping("/update/{id}")
-    public User updateUser(@PathVariable Long id,
-                           @RequestBody UpdateUserRequest req) {
+    @PutMapping("/profile")
+    public User updateProfile(HttpServletRequest request,
+                              @RequestBody UpdateUserRequest req){
 
-        User user = userRepository.findById(id).orElseThrow();
+        String authHeader = request.getHeader("Authorization");
+        String token = authHeader.substring(7);
+
+        String email = jwtService.extractEmail(token);
+
+        User user = userRepository.findByEmail(email).orElseThrow();
 
         user.setUsername(req.getUsername());
         user.setPhone(req.getPhone());
