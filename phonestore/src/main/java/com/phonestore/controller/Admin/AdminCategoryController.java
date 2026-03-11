@@ -28,7 +28,17 @@ public class AdminCategoryController {
     public Category create(@RequestBody CreateCategoryRequest request){
 
         Category category = new Category();
+
         category.setName(request.getName());
+
+        if(request.getParentId() != null){
+
+            Category parent = categoryRepository
+                    .findById(request.getParentId())
+                    .orElseThrow();
+
+            category.setParent(parent);
+        }
 
         return categoryRepository.save(category);
     }
