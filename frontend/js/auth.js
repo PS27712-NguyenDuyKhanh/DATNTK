@@ -108,30 +108,41 @@ async function createPassword() {
 
 }
 
-async function login(){
+async function login() {
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const res = await fetch("http://localhost:8081/api/auth/login",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
+    const res = await fetch("http://localhost:8081/api/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
         },
-        body:JSON.stringify({email,password})
+        body: JSON.stringify({ email, password })
     });
 
-    if(!res.ok){
+    if (!res.ok) {
 
         const text = await res.text();
-        showMessage(text,"danger");
+        showMessage(text, "danger");
         return;
     }
 
     const data = await res.json();
 
-    localStorage.setItem("token",data.token);
+    localStorage.setItem("token", data.token);
 
-    showMessage("Đăng nhập thành công","success");
+    showMessage("Đăng nhập thành công", "success");
+
+    // redirect theo role
+    setTimeout(() => {
+
+        if (data.role === "ADMIN") {
+            window.location.href = "admin/dashboard.html";
+        } else {
+            window.location.href = "index.html";
+        }
+
+    }, 1000);
 
 }
