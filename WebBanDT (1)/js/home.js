@@ -6,15 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const userName = document.getElementById("userName");
     const btnLogout = document.getElementById("btnLogout");
 
-    // Nếu chưa đăng nhập
     if (!username) {
+
         btnLogin.style.display = "inline-block";
         userName.style.display = "none";
         btnLogout.style.display = "none";
         return;
+
     }
 
-    // Nếu đã đăng nhập
     btnLogin.style.display = "none";
 
     userName.style.display = "inline-block";
@@ -22,18 +22,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btnLogout.style.display = "inline-block";
 
-    // Click username → profile
     userName.onclick = function () {
         window.location.href = "profile.html";
     };
 
-    // Logout
     btnLogout.onclick = function () {
 
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("role", data.role);
-        localStorage.setItem("name", data.username);
-        localStorage.setItem("userId", data.id);
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("name");
+        localStorage.removeItem("userId");
 
         alert("Đã đăng xuất");
 
