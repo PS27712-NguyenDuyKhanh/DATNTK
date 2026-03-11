@@ -53,7 +53,7 @@
                 <li>
                     <a href="inventory.html">
                         <i class="fa fa-warehouse"></i>
-                        Quản lý kho
+                        Quản lý danh mục
                     </a>
                 </li>
 
@@ -87,7 +87,7 @@
             <!-- TOPBAR -->
             <div class="topbar">
 
-            <h2 style="margin-bottom:20px;">Quản lý tài khoản</h2>
+                <h2 style="margin-bottom:20px;">Quản lý tài khoản</h2>
 
                 <div class="admin">
                     <img src="">
@@ -112,75 +112,34 @@
 
             <div class="table-box">
 
-                <table>
+    <table>
 
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên</th>
-                            <th>Email</th>
-                            <th>Vai trò</th>
-                            <th>Trạng thái</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Vai trò</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
 
-                    <tbody>
+        <tbody id="userTable">
 
-                        <tr>
+        </tbody>
 
-                            <td>1</td>
-                            <td>Nguyễn Văn A</td>
-                            <td>a@gmail.com</td>
-                            <td>Admin</td>
-                            <td class="active">Hoạt động</td>
+    </table>
 
-                            <td>
-
-                                <button class="block">
-                                    <i class="fa fa-lock"></i>
-                                </button>
-
-                                <button class="delete">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>2</td>
-                            <td>Trần Thị B</td>
-                            <td>b@gmail.com</td>
-                            <td>User</td>
-                            <td class="locked">Bị khóa</td>
-
-                            <td>
-
-                                <button class="unlock">
-                                    <i class="fa fa-unlock"></i>
-                                </button>
-
-                                <button class="delete">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
+</div>
 
         </div>
 
     </div>
 
+    <script src="../js/admin/loadUsers.js"></script>
+    <script src="../js/admin/changeStatus.js"></script>
+    <script src="../js/admin/deleteUser.js"></script>
 </body>
 
 </html>

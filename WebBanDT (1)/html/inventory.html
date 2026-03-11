@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý kho</title>
+    <title>Quản lý danh mục</title>
 
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -53,7 +53,7 @@
                 <li>
                     <a href="inventory.html">
                         <i class="fa fa-warehouse"></i>
-                        Quản lý kho
+                        Quản lý danh mục
                     </a>
                 </li>
 
@@ -89,7 +89,7 @@
 
             <div class="topbar">
 
-                <h1 class="page-title">Quản lý kho</h1>
+                <h1 class="page-title">Quản lý danh mục</h1>
 
                 <div class="admin">
                     <img src="">
@@ -106,7 +106,7 @@
 
                 <button class="add-product">
                     <i class="fa-solid fa-plus"></i>
-                    Nhập thêm hàng
+                    Nhập thêm danh mục
                 </button>
 
             </div>
@@ -119,134 +119,14 @@
                 <table>
 
                     <thead>
-
                         <tr>
-
-                            <th>Mã SP</th>
-                            <th>Sản phẩm</th>
-                            <th>Tồn kho</th>
-                            <th>Đã bán</th>
-                            <th>Nhập gần nhất</th>
-                            <th>Trạng thái</th>
-                            <th>Thao tác</th>
-
+                            <th>ID</th>
+                            <th>Tên danh mục</th>
+                            <th>Hành động</th>
                         </tr>
-
                     </thead>
 
-                    <tbody>
-
-                        <tr>
-
-                            <td>#SP101</td>
-
-                            <td class="product">
-
-                                <img src="https://picsum.photos/60">
-
-                                <span>Áo Hoodie Basic</span>
-
-                            </td>
-
-                            <td class="stock">120</td>
-
-                            <td>80</td>
-
-                            <td>18/03/2026</td>
-
-                            <td class="stock-good">Còn nhiều</td>
-
-                            <td>
-
-                                <div class="action-buttons">
-
-                                    <button class="edit">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </button>
-
-                                    <button class="import">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td>#SP102</td>
-
-                            <td class="product">
-
-                                <img src="https://picsum.photos/61">
-
-                                <span>Giày Sneaker</span>
-
-                            </td>
-
-                            <td class="stock">20</td>
-
-                            <td>140</td>
-
-                            <td>15/03/2026</td>
-
-                            <td class="stock-low">Sắp hết</td>
-
-                            <td>
-
-                                <div class="action-buttons">
-
-                                    <button class="edit">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </button>
-
-                                    <button class="import">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td>#SP103</td>
-
-                            <td class="product">
-
-                                <img src="https://picsum.photos/62">
-
-                                <span>Áo Thun Oversize</span>
-
-                            </td>
-
-                            <td class="stock">0</td>
-
-                            <td>95</td>
-
-                            <td>10/03/2026</td>
-
-                            <td class="stock-out">Hết hàng</td>
-
-                            <td>
-
-                                <div class="action-buttons">
-
-                                    <button class="import">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
+                    <tbody id="categoryTable">
 
                     </tbody>
 
@@ -257,6 +137,8 @@
         </div>
 
     </div>
+
+    <script src="../js/loadCategories.js"></script>
 
 </body>
 
