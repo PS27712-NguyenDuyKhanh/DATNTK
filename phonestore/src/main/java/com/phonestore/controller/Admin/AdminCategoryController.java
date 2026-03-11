@@ -35,7 +35,8 @@ public class AdminCategoryController {
 
             Category parent = categoryRepository
                     .findById(request.getParentId())
-                    .orElseThrow();
+                    .orElseThrow(() ->
+                            new RuntimeException("Parent category not found"));
 
             category.setParent(parent);
         }
